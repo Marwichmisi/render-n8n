@@ -17,15 +17,22 @@ services:
         value: https
       - key: NODE_ENV
         value: production
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=400
       - key: GENERIC_TIMEZONE
         value: Europe/Paris
       - key: TZ
         value: Europe/Paris
       - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
         value: true
-      - key: N8N_RUNNERS_ENABLED
+      - key: N8N_DIAGNOSTICS_ENABLED
+        value: false
+      - key: N8N_METRICS
+        value: false
+      - key: EXECUTIONS_DATA_PRUNE
         value: true
-      # --- Database Supabase (pooled 6543) ---
+      - key: EXECUTIONS_DATA_MAX_AGE
+        value: 168
       - key: DB_TYPE
         value: postgresdb
       - key: DB_POSTGRESDB_HOST
@@ -42,7 +49,6 @@ services:
         value: true
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: false
-      # --- Secrets à remplir dans le Dashboard (sync: false = jamais commité) ---
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
       - key: N8N_ENCRYPTION_KEY
